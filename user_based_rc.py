@@ -17,7 +17,7 @@ def getListItem(id_user):
 
 
 def init():
-    data = pd.read_csv('data_1.csv')
+    data = pd.read_csv('data.csv')
     data_item_base = data.drop('user', 1)
     data_item_base_frame = pd.read_csv('data_item_base_frame.csv', index_col = [0])
     data_neighbors = pd.DataFrame(index=data_item_base_frame.columns, columns = range(1, 11))
@@ -37,8 +37,8 @@ def init():
                 product_top_sims = data_item_base_frame.ix[product].sort_values(ascending=False)[1:10]
                 user_purchases = data_item_base.ix[user, product_top_names]
                 data_sims.ix[i, j] = similarity_score(user_purchases, product_top_sims)
-    data_sims.to_csv('data_sims.csv', sep=',', encoding='utf-8')
-    print data_sims
-    data_recommend = pd.DataFrame(index=data_sims.ix[:, 0], columns=range(1, 11))
-    data_recommend.ix[0:, 0] = data_sims.ix[:, 0]
-    data_recommend.to_csv('data_recommend.csv', sep=',', encoding='utf-8')
+    data_sims.to_csv('data_user_base_frame.csv', sep=',', encoding='utf-8')
+    # print data_sims
+    # data_recommend = pd.DataFrame(index=data_sims.ix[:, 0], columns=range(1, 11))
+    # data_recommend.ix[0:, 0] = data_sims.ix[:, 0]
+    # data_recommend.to_csv('data_recommend.csv', sep=',', encoding='utf-8')
