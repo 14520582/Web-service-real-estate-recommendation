@@ -7,8 +7,8 @@ def getListItem(id_item):
     data_item_base_frame = pd.read_csv('data_item_base_frame.csv', index_col = [0])
     row = data_item_base_frame.loc[id_item].sort_values(ascending=False)[:11].index
     my_list = []
-    for i in range(1,10):
-        my_list.append(row[i])
+    for i in range(1, 10):
+        my_list.append(int(row[i]))
     print my_list
     return jsonify(my_list)
 
